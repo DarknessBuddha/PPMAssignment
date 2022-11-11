@@ -10,7 +10,9 @@ int main(int argc, char** argv){
     FILE* resizedFile = fopen(argv[2], "w");
     FILE* negativeFile = fopen(argv[3], "w");
 
-    assert(inFile && resizedFile && negativeFile);
+    assert(inFile);
+    assert(resizedFile);
+    assert(negativeFile);
 
     Header* header = (Header*) malloc(sizeof(Header));
     readHeader(&header, inFile);
