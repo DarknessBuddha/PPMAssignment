@@ -54,7 +54,7 @@ void discardComments(FILE* file);
 
 Pixel** allocateImage(int width, int height);
 
-void freeImage(Pixel*** pixels, Header* header);
+void freeImage(Pixel** pixels, Header* header);
 
 void readImage(FILE* file, Pixel*** image, Header* header);
 

@@ -66,18 +66,17 @@ Pixel** allocateImage(int width, int height){
     return image;
 }
 
-void freeImage(Pixel*** image, Header* header){
+void freeImage(Pixel** image, Header* header){
     for(int i = 0; i < header->height; i++){
-        free((*image)[i]);
+        free(image[i]);
     }
-    free(*image);
+    free(image);
 }
 
 void readImage(FILE* file, Pixel*** image, Header* header){
     for(int i = 0; i < header->height; i++){
         fread((*image)[i], sizeof(Pixel), header->width, file);
     }
-    image = NULL;
 }
 
 void writeResizeImage(FILE* file, Pixel** image, int height, int width, Header* header){
@@ -88,19 +87,19 @@ void writeResizeImage(FILE* file, Pixel** image, int height, int width, Header* 
     strcpy(resizedHeader->type, header->type);
     resizedHeader->maxColor = header->maxColor;
 
-    double relativeWidth = (double) header->width/ width;
+    double relativeWidth = (double) header->width / width;
     double relativeHeight = (double) header->height / height;
     writeHeader(resizedHeader, file);
     for (int i = 0; i < height; i++){
         for (int j = 0; j < width; j++){
-            int tempColumn = i * relativeHeight;
-            int tempWidth = j * relativeWidth;
-            resizedImage[i][j] = image[tempColumn][tempWidth];
+            int row = (int)(i * relativeHeight);
+            int column = (int)(j * relativeWidth);
+            resizedImage[i][j] = image[row][column];
         }
         fwrite(resizedImage[i], sizeof(Pixel), resizedHeader->width, file);
     }    
     
-    freeImage(&resizedImage, resizedHeader);
+    freeImage(resizedImage, resizedHeader);
 }
 
 void writeNegativeImage(FILE* file, Pixel** image, Header* header){
@@ -114,4 +113,5 @@ void writeNegativeImage(FILE* file, Pixel** image, Header* header){
         }
         fwrite(negativeImage[i], sizeof(Pixel), header->width, file);
     }
+    freeImage(negativeImage, header);
 }

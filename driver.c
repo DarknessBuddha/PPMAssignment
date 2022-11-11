@@ -32,7 +32,8 @@ int main(int argc, char** argv){
 
     writeResizeImage(resizedFile, image, height, width, header);
     writeNegativeImage(negativeFile, image, header);
-    
+
+    freeImage(image, header);
     free(header);
 
     fclose(inFile);
