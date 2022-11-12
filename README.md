@@ -8,9 +8,10 @@ gcc <br>
 make
 
 ## Usage
-1. clone repository
-2. make run
-3. enter height and width for resized image
+```shell
+    make run
+```
+Enter height and width for resized image
 
 ## Command
 ```shell
