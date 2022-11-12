@@ -71,6 +71,7 @@ void readImage(FILE* file, Pixel*** image, Header* header){
 
 void writeResizeImage(FILE* file, Pixel** image, int height, int width, Header* header){
     Pixel** resizedImage = allocateImage(width, height);
+
     Header* resizedHeader = (Header*) malloc(sizeof(Header));
     resizedHeader->height = height;
     resizedHeader->width = width;
@@ -90,6 +91,7 @@ void writeResizeImage(FILE* file, Pixel** image, int height, int width, Header* 
     }    
     
     freeImage(resizedImage, resizedHeader);
+    free(resizedHeader);
 }
 
 void writeNegativeImage(FILE* file, Pixel** image, Header* header){
