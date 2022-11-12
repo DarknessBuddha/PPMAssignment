@@ -7,40 +7,18 @@
 #include "functions.h"
 
 void readHeader(Header** header, FILE* file){
-    int buffer;
 
     // scan ppm type
     fscanf(file, "%2s ", (*header)->type);
-    // skip spaces and check for comment until a digit is read
-    do{
-        // skip spaces
-        while ((buffer = (fgetc(file))) != EOF && isspace(buffer));
-        // check for comment
-        if(buffer == '#') discardComments(file);
-    } while (!isdigit(buffer));
-    ungetc(buffer, file);
+    handleSpacesAndComments(file);
 
     // scan width of image
     fscanf(file, "%d", &(*header)->width);
-    // skip spaces and check for comment until a digit is read
-    do{
-        // skip spaces
-        while ((buffer = (fgetc(file))) != EOF && isspace(buffer));
-        // check for comment
-        if(buffer == '#') discardComments(file);
-    } while (!isdigit(buffer));
-    ungetc(buffer, file);
+    handleSpacesAndComments(file);
 
     // scan height of image
     fscanf(file, "%d", &(*header)->height);
-    // skip spaces and check for comment until a digit is read
-    do{
-        // skip spaces
-        while ((buffer = (fgetc(file))) != EOF && isspace(buffer));
-        // check for comment
-        if(buffer == '#') discardComments(file);
-    } while (!isdigit(buffer));
-    ungetc(buffer, file);
+    handleSpacesAndComments(file);
 
     // scan maximum color value
     fscanf(file, "%d ", &(*header)->maxColor);
@@ -56,6 +34,18 @@ void writeHeader(Header* header, FILE* file){
 void discardComments(FILE* file){
     int buffer;
     while ((buffer = (fgetc(file))) != EOF && buffer != '\n');
+}
+
+void handleSpacesAndComments(FILE* file){
+    int buffer;
+    // skip spaces and check for comment until a digit is read
+    do{
+        // skip spaces
+        while ((buffer = (fgetc(file))) != EOF && isspace(buffer));
+        // check for comment
+        if(buffer == '#') discardComments(file);
+    } while (!isdigit(buffer));
+    ungetc(buffer, file);
 }
 
 Pixel** allocateImage(int width, int height){

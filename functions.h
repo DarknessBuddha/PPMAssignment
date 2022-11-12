@@ -22,7 +22,6 @@ typedef struct Header{
 typedef struct Pixel{
     unsigned char red, green, blue;
 }Pixel;
-
 /*
  * Parameters: header - pointer storing the location of header data
  *             file - input file to be read from
@@ -51,6 +50,13 @@ void writeHeader(Header* header, FILE* file);
  * Comments start with #.
  */
 void discardComments(FILE* file);
+
+/*
+ * Parameters - file - input file to be read from
+ * Return: None
+ * This function skips spaces and ignores comments until a number has been reached
+ */
+void handleSpacesAndComments(FILE* file);
 
 Pixel** allocateImage(int width, int height);
 
