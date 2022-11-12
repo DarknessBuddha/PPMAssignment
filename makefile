@@ -3,7 +3,8 @@ COMPILER = gcc
 OPTIONS = -Wall
 PROGRAM := PA1
 SRC = driver.c functions.c
-ARGS = poohWComment.ppm resized.ppm negative.ppm
+HEADER = functions.h
+ARGS = input.ppm resized.ppm negative.ppm
 ifeq ($(OS),Windows_NT)
 EXT = .exe
 else
@@ -17,7 +18,10 @@ run: $(PROGRAM)
 	./$(PROGRAM) $(ARGS) 
 
 $(PROGRAM): $(SRC)
-	$(COMPILER) $(OPTIONS) $^ -o $@ 
+	$(COMPILER) $(OPTIONS) $^ -o $@
+
+tar:
+	tar -czvf PA1.tar.gz makefile readme.txt $(SRC) $(HEADER)
 
 ifeq ($(OS),Windows_NT)
 clean:
