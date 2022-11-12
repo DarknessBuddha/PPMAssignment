@@ -13,7 +13,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-//Struct that holds the type of image, width, height, and may RGB value from the image header
+//Struct that holds the type of image, width, height, and
+//may RGB value from the image header
 typedef struct Header{
     char type[3];
     int width;
@@ -73,7 +74,8 @@ Pixel** allocateImage(int width, int height);
 Parameters: pixels - 2d pixel array that represents an image
             header - header that contains the imformation of the image
 Return: void
-This function loops through and frees all memory that was allocated for the image
+This function loops through and
+frees all memory that was allocated for the image
 */
 void freeImage(Pixel** pixels, Header* header);
 
@@ -93,16 +95,20 @@ Parameters : file - file pointer to be written to
              width - user chosed new width for the new image
              header - header that contains the information of the original image
 Return: void
-This function creates a resized image of the original with the dimensions passed in and writes it to file
+This function creates a resized image of
+ the original with the dimensions passed in and writes it to file
 */
-void writeResizeImage(FILE* file, Pixel** image, int height, int width, Header* header);
+void writeResizeImage
+(FILE* file, Pixel** image, int height, int width, Header* header);
 
 /*
 Parameters: file - file pointer to be written to 
             image - original image passed in
-            header - header that contains the information of the image (same for both images)
+            header - header that contains the
+                information of the image (same for both images)
 Return: void
-This function creates an image with -255 to all RGB values of the original and writes it to the file passed in
+This function creates an image with -255 to all RGB values
+of the original and writes it to the file passed in
 */
 void writeNegativeImage(FILE* file, Pixel** image, Header* header);
 

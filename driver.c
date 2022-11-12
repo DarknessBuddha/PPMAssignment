@@ -28,7 +28,8 @@ int main(int argc, char** argv){
     Header* header = (Header*) malloc(sizeof(Header));
     readHeader(&header, inFile);
 
-    //Allocates memory for a 2d array of pixels and reads the info from the image
+    //Allocates memory for a 2d array
+    //of pixels and reads the info from the image
     Pixel** image = allocateImage(header->width, header->height);
     readImage(inFile, &image, header);
 
@@ -36,12 +37,14 @@ int main(int argc, char** argv){
     int height = 0;
     int width = 0;
 
-    //Prompts the user to enter the new image height and exits if the input is invalid
+    //Prompts the user to enter the new
+    //image height and exits if the input is invalid
     printf("Enter the new height for the image: ");
     scanf("%d", &height);
     assert(height > 0);
 
-    //Prompts the user to enter the new image width and exits if the input is invalid
+    //Prompts the user to enter the
+    //new image width and exits if the input is invalid
     printf("Enter the new width for the image: ");
     scanf("%d", &width);
     assert(width > 0);

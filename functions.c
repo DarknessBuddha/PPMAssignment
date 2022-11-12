@@ -7,7 +7,8 @@
  *************************/
 #include "functions.h"
 
-//This function reads in image information from the header and eliminates comments
+//This function reads in image
+//information from the header and eliminates comments
 void readHeader(Header** header, FILE* file){
     // scan ppm type
     fscanf(file, "%2s ", (*header)->type);
@@ -54,10 +55,12 @@ void handleSpacesAndComments(FILE* file){
 
 //This function allocates memory for a 2D pixel array
 Pixel** allocateImage(int width, int height){
-    //allocates an array of pixel pointers that represents the image height block
+    //allocates an array of pixel
+    //pointers that represents the image height block
     Pixel** image = (Pixel**) malloc(sizeof(Pixel*) * height);
 
-    //Loops through and sets each height pointer to point at a block of pixels representing the width of an image
+    //Loops through and sets each height
+    //pointer to point at a block of pixels representing the width of an image
     for(int i = 0; i < height; i++){
         image[i] = (Pixel*) malloc(sizeof(Pixel) * width);
     }
@@ -77,19 +80,23 @@ void freeImage(Pixel** image, Header* header){
 
 //This function reads in all pixels of the image passed in
 void readImage(FILE* file, Pixel*** image, Header* header){
-    //Reads in all pixels from the image file and stores it in the 2d pixel array
+    //Reads in all pixels from the
+    //image file and stores it in the 2d pixel array
     for(int i = 0; i < header->height; i++){
         fread((*image)[i], sizeof(Pixel), header->width, file);
     }
 }
 
 //This function resizes the image to the height and width the user chose
-void writeResizeImage(FILE* file, Pixel** image, int height, int width, Header* header){
-    //Allocates memory for the new resized image with a new header with the dimesnions of the resized
+void writeResizeImage
+    (FILE* file, Pixel** image, int height, int width, Header* header){
+    //Allocates memory for the new resized
+    //image with a new header with the dimensions of the resized
     Pixel** resizedImage = allocateImage(width, height);
     Header* resizedHeader = (Header*) malloc(sizeof(Header));
 
-    //Initializes the resized header info to reflect the dimensions the user chose
+    //Initializes the resized header
+    // info to reflect the dimensions the user chose
     resizedHeader->height = height;
     resizedHeader->width = width;
     strcpy(resizedHeader->type, header->type);
@@ -101,7 +108,8 @@ void writeResizeImage(FILE* file, Pixel** image, int height, int width, Header* 
     //Writes the resized header info to the outfile
     writeHeader(resizedHeader, file);
     
-    //Traverses the 2d array and fills the resized image with select pixels from the original image
+    //Traverses the 2d array and fills
+    //the resized image with select pixels from the original image
     for (int i = 0; i < height; i++){
         for (int j = 0; j < width; j++){
             int row = (int)(i * relativeHeight);
@@ -121,7 +129,8 @@ void writeResizeImage(FILE* file, Pixel** image, int height, int width, Header* 
 void writeNegativeImage(FILE* file, Pixel** image, Header* header){
     //Writes the header info as it does not change
     writeHeader(header, file);
-    //Allocates memory for a new 2d pixel array that will store the opposite values of the original image
+    //Allocates memory for a new 2d pixel array
+    //that will store the opposite values of the original image
     Pixel** negativeImage = allocateImage(header->width, header->height);
 
     //Iterates through the image to access individual pixels
