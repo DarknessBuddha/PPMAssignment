@@ -7,3 +7,6 @@
 negative.ppm
 resized.ppm
 readme.txt
+*.zip
+*.tar
+*.gz
