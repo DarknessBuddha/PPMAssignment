@@ -17,7 +17,6 @@ void readHeader(Header** header, FILE* file){
     fscanf(file, "%d", &(*header)->width);
     handleSpacesAndComments(file);
 
-
     // scan height of image
     fscanf(file, "%d", &(*header)->height);
     handleSpacesAndComments(file);
