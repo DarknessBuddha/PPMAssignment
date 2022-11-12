@@ -1,3 +1,5 @@
+![](./images/pooh.png)
+
 ## Description
 This program creates an inverted image and a resized image from a ppm file
 
@@ -15,4 +17,7 @@ make
     make <target>
 ```
 target:
-    
+- all - compiles program
+- run - compiles and executes the program
+- clean - removes .out .exe .o files
+- tar - tars program
