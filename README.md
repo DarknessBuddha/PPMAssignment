@@ -21,3 +21,4 @@ target:
 - run - compiles and executes the program
 - clean - removes .out .exe .o files
 - tar - tars program
+

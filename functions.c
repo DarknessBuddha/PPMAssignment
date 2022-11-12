@@ -3,7 +3,7 @@
  *Lucia Wang
  *CPSC 2310 4:30 and 2:00
  *ilin@clemson.edu
- lucia2@clemson.edu
+ *lucia2@clemson.edu
  *************************/
 #include "functions.h"
 
