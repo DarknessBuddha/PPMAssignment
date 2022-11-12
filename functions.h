@@ -56,6 +56,12 @@ void writeHeader(Header* header, FILE* file);
 void discardComments(FILE* file);
 
 /*
+ * Parameters: file - input file to be read form
+ * Return: None
+ * Skips spaces and comments until a digit is reached
+ */
+void handleSpacesAndComments(FILE* file);
+/*
 Parameters: width - width of the image to be created
             height - height of the image to be created
 Return: void
